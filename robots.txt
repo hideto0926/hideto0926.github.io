@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://hideto0926.github.io/hpTop/sitemap.xml
