@@ -3,7 +3,7 @@
 Bilingual (EN / 日本語) landing page that introduces all of hideto's apps and
 links to each app's own GitHub Pages site.
 
-Live (after deploy): https://hideto0926.github.io/hpTop/
+Live (after deploy): https://hideto0926.github.io/
 
 ## Files
 - `index.html` — the index page (inline CSS/JS, no build step)
