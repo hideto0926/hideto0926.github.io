@@ -3,7 +3,7 @@
 Bilingual (EN / 日本語) landing page that introduces all of hideto's apps and
 links to each app's own GitHub Pages site.
 
-Live (after deploy): https://hideto0926.github.io/
+Live (after deploy): https://hideto0926.github.io/hpTop/
 
 ## Files
 - `index.html` — the index page (inline CSS/JS, no build step)
@@ -13,6 +13,7 @@ Live (after deploy): https://hideto0926.github.io/
 ## Apps & links
 | App | Page (GitHub Pages) | App Store |
 |-----|---------------------|-----------|
+| ScrollAlbum   | https://hideto0926.github.io/scrollAlbum/ | — (coming soon) |
 | Magic Album   | https://hideto0926.github.io/MagicAlbum/  | — (coming soon) |
 | instaFolder   | https://hideto0926.github.io/instaFolder/ | https://apps.apple.com/jp/app/instafolder/id6787540013 |
 | superMosaic   | https://hideto0926.github.io/superMosaic/ | https://apps.apple.com/jp/app/supermosaic/id6778454220 |
