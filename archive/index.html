@@ -8,7 +8,7 @@
 <meta name="keywords" content="hideto, iOS apps, indie app, ふぅふぅ, fufu, 息で遊ぶ, 風船ゲーム, ScrollAlbum, スクロールアルバム, 旅アルバム, 好きぴエール, cheerNotice, 応援通知, LoveTypeViewer, LoveType, 相性診断, Magic Album, instaFolder, 麻雀EYE, MahjongEye, superMosaic, BeatShuffle, BarcodeClip, 30minTimer, Rain Cam, アプリ, オンデバイスAI" />
 <meta name="author" content="hideto" />
 <meta name="robots" content="index, follow" />
-<meta name="theme-color" content="#0a0a0c" />
+<meta name="theme-color" content="#0b0b1a" />
 <link rel="canonical" href="https://hideto0926.github.io/hpTop/" />
 
 <!-- Google AdSense -->
@@ -38,7 +38,6 @@
   "url": "https://hideto0926.github.io/hpTop/",
   "author": { "@type": "Person", "name": "hideto" },
   "hasPart": [
-    { "@type": "SoftwareApplication", "name": "SHIBA TOWER", "operatingSystem": "iOS", "applicationCategory": "GameApplication", "url": "https://hideto0926.github.io/shibaTower/" },
     { "@type": "SoftwareApplication", "name": "ふぅふぅ", "operatingSystem": "iOS", "applicationCategory": "GameApplication", "url": "https://hideto0926.github.io/fufu/" },
     { "@type": "SoftwareApplication", "name": "ScrollAlbum", "operatingSystem": "iOS", "applicationCategory": "PhotoApplication", "url": "https://apps.apple.com/jp/app/scrollalbum/id6793163045" },
     { "@type": "SoftwareApplication", "name": "好きぴエール", "operatingSystem": "iOS", "applicationCategory": "LifestyleApplication", "url": "https://apps.apple.com/jp/app/%E5%A5%BD%E3%81%8D%E3%81%B4%E3%82%A8%E3%83%BC%E3%83%AB/id6791305109" },
@@ -56,20 +55,21 @@
 }
 </script>
 
-<link rel="icon" type="image/png" href="assets/supermosaic.png" />
+<link rel="icon" type="image/png" href="../assets/supermosaic.png" />
 
 <style>
   :root{
-    --bg:#0a0a0c;
-    --panel:rgba(255,255,255,.024);
-    --panel-hover:rgba(255,255,255,.045);
-    --line:rgba(255,255,255,.09);
-    --line-strong:rgba(255,255,255,.20);
-    --text:#eceef3;
-    --muted:#8b8d99;
-    --faint:#5e606c;
-    --accent:#b4a7ff;
-    --radius:16px;
+    --pink:#ff6bb5;
+    --purple:#8c5cf6;
+    --blue:#4db0ff;
+    --gold:#ffd64f;
+    --bg:#0b0b1a;
+    --bg2:#12122a;
+    --card:rgba(255,255,255,.055);
+    --card-bd:rgba(255,255,255,.12);
+    --text:#f4f4fb;
+    --muted:#a9adc7;
+    --radius:22px;
   }
 
   *{box-sizing:border-box;}
@@ -79,163 +79,159 @@
                 "Segoe UI",Roboto,Helvetica,Arial,sans-serif;
     color:var(--text);
     background:var(--bg);
-    line-height:1.65;
+    line-height:1.6;
     -webkit-font-smoothing:antialiased;
-    text-rendering:optimizeLegibility;
     overflow-x:hidden;
   }
 
-  /* ---- three.js canvas layer ---- */
-  #bg-canvas{ position:fixed; inset:0; z-index:-2; display:block; width:100%; height:100%; }
-  .fallback-bg{
-    position:fixed; inset:0; z-index:-3; background:var(--bg);
-  }
-  body::before{ /* subtle depth + top glow, monochrome */
-    content:""; position:fixed; inset:0; z-index:-1; pointer-events:none;
+  /* ---- Animated aurora background ---- */
+  .aurora{
+    position:fixed; inset:-20% -20% auto -20%; height:120vh; z-index:-2;
     background:
-      radial-gradient(90% 60% at 50% -10%, rgba(180,167,255,.06), transparent 60%),
-      radial-gradient(120% 90% at 50% 120%, rgba(0,0,0,.6), transparent 60%);
+      radial-gradient(40% 50% at 20% 18%, rgba(255,107,181,.55), transparent 60%),
+      radial-gradient(45% 55% at 82% 22%, rgba(77,176,255,.50), transparent 60%),
+      radial-gradient(50% 55% at 55% 78%, rgba(140,92,246,.55), transparent 62%),
+      radial-gradient(35% 45% at 88% 80%, rgba(255,214,79,.35), transparent 60%);
+    filter:blur(60px) saturate(140%);
+    animation:drift 18s ease-in-out infinite alternate;
+  }
+  @keyframes drift{
+    0%{transform:translate3d(0,0,0) scale(1); }
+    50%{transform:translate3d(-3%,2%,0) scale(1.08); }
+    100%{transform:translate3d(3%,-2%,0) scale(1.04); }
+  }
+  body::before{ /* darken + vignette */
+    content:""; position:fixed; inset:0; z-index:-1;
+    background:linear-gradient(180deg, rgba(11,11,26,.45), rgba(11,11,26,.86) 55%, var(--bg));
   }
 
   /* ---- Layout ---- */
-  .wrap{max-width:1000px; margin:0 auto; padding:0 28px; position:relative; z-index:1;}
+  .wrap{max-width:1080px; margin:0 auto; padding:0 22px;}
 
   /* ---- Top bar ---- */
-  .topbar{
-    display:flex; align-items:center; justify-content:space-between;
-    padding:26px 0 22px; border-bottom:1px solid var(--line);
-  }
-  .brand{display:flex; align-items:center; gap:10px; font-weight:600; letter-spacing:.2px; font-size:15px;}
+  .topbar{display:flex; align-items:center; justify-content:space-between; padding:22px 0 0;}
+  .brand{display:flex; align-items:center; gap:10px; font-weight:800; letter-spacing:.3px;}
   .brand .dot{
-    width:8px; height:8px; border-radius:50%; background:var(--accent);
-    box-shadow:0 0 0 4px rgba(180,167,255,.12);
+    width:13px; height:13px; border-radius:50%;
+    background:conic-gradient(from 0deg,var(--pink),var(--purple),var(--blue),var(--gold),var(--pink));
+    box-shadow:0 0 16px rgba(140,92,246,.8);
+    animation:spin 6s linear infinite;
   }
-  .brand .sub{color:var(--faint); font-weight:500;}
+  @keyframes spin{to{transform:rotate(360deg);}}
 
-  .langtoggle{display:inline-flex; align-items:center; gap:2px; font-size:13px;}
-  .langtoggle button{
-    border:0; background:transparent; color:var(--faint); cursor:pointer;
-    font-weight:600; font-size:13px; padding:6px 10px; border-radius:8px; transition:.2s;
-    letter-spacing:.02em;
+  .langtoggle{
+    display:inline-flex; background:rgba(255,255,255,.08); border:1px solid var(--card-bd);
+    border-radius:999px; padding:4px; gap:2px; backdrop-filter:blur(8px);
   }
-  .langtoggle button:hover{color:var(--muted);}
-  .langtoggle button.active{color:var(--text);}
-  .langtoggle .sep{color:var(--line-strong);}
+  .langtoggle button{
+    border:0; background:transparent; color:var(--muted); cursor:pointer;
+    font-weight:700; font-size:13px; padding:6px 14px; border-radius:999px; transition:.2s;
+  }
+  .langtoggle button.active{
+    color:#0b0b1a;
+    background:linear-gradient(135deg,var(--pink),var(--purple) 45%,var(--blue));
+    box-shadow:0 4px 14px rgba(140,92,246,.5);
+  }
 
   /* ---- Hero ---- */
-  .hero{padding:96px 0 56px; max-width:640px;}
-  .hero .eyebrow{
-    font-size:12px; font-weight:600; letter-spacing:.26em; text-transform:uppercase;
-    color:var(--muted); display:flex; align-items:center; gap:14px;
+  .hero{text-align:center; padding:64px 0 30px;}
+  .hero .spark{
+    font-size:13px; font-weight:800; letter-spacing:3px; text-transform:uppercase;
+    color:var(--gold);
   }
-  .hero .eyebrow::before{content:""; width:30px; height:1px; background:var(--line-strong);}
   .hero h1{
-    font-size:clamp(34px,5.6vw,60px); line-height:1.06; margin:.5em 0 .34em;
-    font-weight:600; letter-spacing:-.02em; color:var(--text);
+    font-size:clamp(34px,6vw,60px); line-height:1.12; margin:.35em 0 .15em; font-weight:900;
+    background:linear-gradient(100deg,#fff 10%,var(--pink) 40%,var(--purple) 60%,var(--blue) 85%);
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+    background-size:200% auto; animation:shine 6s linear infinite;
   }
-  .hero p{color:var(--muted); font-size:clamp(15px,2vw,18px); margin:0; max-width:560px;}
-
-  /* ---- Section label ---- */
-  .section-label{
-    display:flex; align-items:center; justify-content:space-between;
-    padding:14px 0; border-bottom:1px solid var(--line); margin-bottom:26px;
-  }
-  .section-label span{font-size:12px; letter-spacing:.18em; text-transform:uppercase; color:var(--muted); font-weight:600;}
-  .section-label .count{color:var(--faint);}
+  @keyframes shine{to{background-position:200% center;}}
+  .hero p{color:var(--muted); font-size:clamp(15px,2.4vw,19px); max-width:620px; margin:.4em auto 0;}
 
   /* ---- Grid ---- */
   .grid{
-    display:grid; gap:16px; padding:0 0 10px;
-    grid-template-columns:repeat(auto-fill,minmax(300px,1fr));
-    perspective:1100px;
+    display:grid; gap:20px; padding:26px 0 10px;
+    grid-template-columns:repeat(auto-fill,minmax(290px,1fr));
   }
 
   .card{
-    position:relative; display:flex; flex-direction:column; gap:16px;
-    background:var(--panel); border:1px solid var(--line); border-radius:var(--radius);
-    padding:24px; transform-style:preserve-3d; will-change:transform, opacity;
-    opacity:var(--op,1);
-    transform:
-      translateY(var(--ty,0px))
-      translateZ(var(--tz,0px))
-      rotateX(var(--rx,0deg))
-      rotateY(var(--ry,0deg));
-    transition:border-color .3s, background .3s, box-shadow .3s;
+    position:relative; display:flex; flex-direction:column; gap:14px;
+    background:var(--card); border:1px solid var(--card-bd); border-radius:var(--radius);
+    padding:22px; backdrop-filter:blur(14px);
+    overflow:hidden; transition:transform .25s ease, box-shadow .25s ease, border-color .25s;
   }
-  .card:hover{
-    border-color:var(--line-strong);
-    background:var(--panel-hover);
-    box-shadow:0 30px 60px rgba(0,0,0,.45);
+  .card::before{ /* gradient sheen border glow */
+    content:""; position:absolute; inset:0; border-radius:var(--radius); padding:1px;
+    pointer-events:none; /* don't block clicks on the buttons underneath */
+    background:linear-gradient(135deg,var(--pink),var(--purple),var(--blue),var(--gold));
+    -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+    -webkit-mask-composite:xor; mask-composite:exclude;
+    opacity:0; transition:opacity .25s;
   }
+  .card:hover{transform:translateY(-6px); box-shadow:0 22px 50px rgba(0,0,0,.45);}
+  .card:hover::before{opacity:.9;}
 
-  .card-head{display:flex; align-items:center; gap:14px;}
+  .card-head{display:flex; align-items:center; gap:15px;}
   .icon{
-    width:56px; height:56px; border-radius:14px; flex:0 0 auto; object-fit:cover;
-    box-shadow:inset 0 0 0 1px rgba(255,255,255,.10), 0 8px 20px rgba(0,0,0,.35);
-    transform:translateZ(28px);
+    width:74px; height:74px; border-radius:18px; flex:0 0 auto; object-fit:cover;
+    box-shadow:0 8px 22px rgba(0,0,0,.4), inset 0 0 0 1px rgba(255,255,255,.12);
   }
-  .card h2, .card .badge{transform:translateZ(14px);}
-  .card h2{margin:0; font-size:17px; font-weight:600; letter-spacing:.01em;}
+  .card h2{margin:0; font-size:21px; font-weight:800;}
   .badge{
-    display:inline-flex; align-items:center; gap:6px; margin-top:4px;
-    font-size:11px; font-weight:600; letter-spacing:.08em; text-transform:uppercase;
-    color:var(--muted);
+    display:inline-block; margin-top:5px; font-size:11px; font-weight:800; letter-spacing:.5px;
+    padding:3px 9px; border-radius:999px; text-transform:uppercase;
   }
-  .badge::before{content:""; width:5px; height:5px; border-radius:50%; background:currentColor;}
-  .badge.live{color:#7bd39b;}
-  .badge.web{color:#7cb8e6;}
-  .badge.soon{color:#d9c07a;}
+  .badge.live{ background:rgba(77,255,148,.16); color:#65f29a; border:1px solid rgba(77,255,148,.35);}
+  .badge.web{ background:rgba(77,176,255,.16); color:#7cc4ff; border:1px solid rgba(77,176,255,.35);}
+  .badge.soon{ background:rgba(255,214,79,.16); color:var(--gold); border:1px solid rgba(255,214,79,.4);}
 
-  .tag{color:var(--muted); font-size:14px; line-height:1.6; flex:1 1 auto; margin:0;}
+  .tag{color:var(--muted); font-size:14.5px; flex:1 1 auto;}
 
-  .actions{display:flex; flex-wrap:wrap; gap:8px; margin-top:2px;}
+  .actions{display:flex; flex-wrap:wrap; gap:10px; margin-top:2px;}
   .btn{
-    flex:1 1 auto; text-align:center; text-decoration:none; font-weight:600; font-size:13.5px;
-    padding:10px 14px; border-radius:10px; transition:.2s; white-space:nowrap;
+    flex:1 1 auto; text-align:center; text-decoration:none; font-weight:800; font-size:14px;
+    padding:11px 14px; border-radius:13px; transition:.2s; white-space:nowrap;
   }
-  .btn-primary{ color:#0a0a0c; background:var(--text); }
-  .btn-primary:hover{ background:#fff; transform:translateY(-1px); }
-  .btn-ghost{ color:var(--text); background:transparent; border:1px solid var(--line-strong); }
-  .btn-ghost:hover{ background:rgba(255,255,255,.06); border-color:rgba(255,255,255,.32); }
+  .btn-primary{
+    color:#0b0b1a;
+    background:linear-gradient(135deg,var(--pink),var(--purple) 50%,var(--blue));
+    box-shadow:0 6px 18px rgba(140,92,246,.45);
+  }
+  .btn-primary:hover{filter:brightness(1.08); transform:translateY(-1px);}
+  .btn-ghost{
+    color:var(--text); background:rgba(255,255,255,.07); border:1px solid var(--card-bd);
+  }
+  .btn-ghost:hover{background:rgba(255,255,255,.14);}
 
   /* ---- Footer ---- */
-  footer{
-    text-align:center; margin-top:56px; padding:34px 0 64px;
-    border-top:1px solid var(--line); color:var(--faint); font-size:13.5px;
+  footer{text-align:center; padding:44px 0 60px; color:var(--muted); font-size:14px;}
+  .dev-link{
+    display:inline-flex; align-items:center; gap:8px; text-decoration:none; color:#0b0b1a;
+    font-weight:800; padding:11px 24px; border-radius:999px; margin-bottom:18px;
+    background:linear-gradient(135deg,var(--pink),var(--purple) 45%,var(--blue) 75%,var(--gold));
+    background-size:200% auto; box-shadow:0 8px 24px rgba(140,92,246,.5);
+    animation:shine 5s linear infinite;
   }
-  footer .row{display:flex; flex-direction:column; gap:12px; align-items:center;}
-  .archive-link{
-    color:var(--muted); text-decoration:none; font-size:13px; letter-spacing:.02em;
-    border-bottom:1px solid transparent; padding-bottom:1px; transition:.2s;
-  }
-  .archive-link:hover{color:var(--text); border-color:var(--line-strong);}
-
+  .dev-link:hover{transform:translateY(-2px) scale(1.03);}
   .lang-en{display:none;}
   html[data-lang="en"] .lang-ja{display:none;}
   html[data-lang="en"] .lang-en{display:revert;}
-
-  @media (max-width:560px){
-    .wrap{padding:0 20px;}
-    .hero{padding:66px 0 44px;}
-  }
 </style>
 </head>
 <body>
-<div class="fallback-bg"></div>
-<canvas id="bg-canvas"></canvas>
+<div class="aurora"></div>
 
 <div class="wrap">
   <div class="topbar">
-    <div class="brand"><span class="dot"></span> hideto <span class="sub">apps</span></div>
+    <div class="brand"><span class="dot"></span> hideto<span style="opacity:.5;font-weight:600;">&nbsp;apps</span></div>
     <div class="langtoggle" id="langtoggle">
       <button data-set="ja">日本語</button>
-      <span class="sep">/</span>
       <button data-set="en">EN</button>
     </div>
   </div>
 
   <header class="hero">
-    <div class="eyebrow">Indie iOS Apps</div>
+    <div class="spark">✦ &nbsp;Indie&nbsp;iOS&nbsp;Apps&nbsp; ✦</div>
     <h1>
       <span class="lang-ja">つくったアプリ、ぜんぶ。</span>
       <span class="lang-en">Everything I’ve built.</span>
@@ -244,38 +240,14 @@
       <span class="lang-ja">オンデバイスにこだわった、ちいさくて便利な iOS アプリたち。気になるアプリのページへどうぞ。</span>
       <span class="lang-en">A collection of small, useful, on-device iOS apps. Tap through to any app’s page.</span>
     </p>
+    <img src="https://komarev.com/ghpvc/?username=hideto0926" alt="Profile Views">
   </header>
 
-  <div class="section-label">
-    <span class="lang-ja">アプリ一覧</span><span class="lang-en">All apps</span>
-    <span class="count">14</span>
-  </div>
-
   <main class="grid" id="grid">
-    <!-- SHIBA TOWER -->
-    <article class="card">
-      <div class="card-head">
-        <img class="icon" src="assets/shibatower.png" alt="SHIBA TOWER" loading="lazy" />
-        <div>
-          <h2>SHIBA TOWER</h2>
-          <span class="badge soon"><span class="lang-ja">近日公開</span><span class="lang-en">Coming soon</span></span>
-        </div>
-      </div>
-      <p class="tag">
-        <span class="lang-ja">写真から人物やペットを自動で切り抜いて積み上げる、落ちものパズル。かわいい柴犬の駒つき。物理演算でぐらぐら積んで、個数と高さでランキングに挑戦。すべて端末内で処理。</span>
-        <span class="lang-en">A falling-block puzzle that auto-cuts people and pets from your photos and stacks them up — with cute Shiba pieces. Pile them high with physics and compete on count and height. 100% on-device.</span>
-      </p>
-      <div class="actions">
-        <a class="btn btn-primary" href="https://hideto0926.github.io/shibaTower/">
-          <span class="lang-ja">ページを見る</span><span class="lang-en">View page</span>
-        </a>
-      </div>
-    </article>
-
     <!-- ふぅふぅ / Fufu -->
     <article class="card">
       <div class="card-head">
-        <img class="icon" src="assets/fufu.png" alt="ふぅふぅ" loading="lazy" />
+        <img class="icon" src="../assets/fufu.png" alt="ふぅふぅ" loading="lazy" />
         <div>
           <h2>ふぅふぅ</h2>
           <span class="badge soon"><span class="lang-ja">近日公開</span><span class="lang-en">Coming soon</span></span>
@@ -295,7 +267,7 @@
     <!-- ScrollAlbum -->
     <article class="card">
       <div class="card-head">
-        <img class="icon" src="assets/scrollalbum.png" alt="ScrollAlbum" loading="lazy" />
+        <img class="icon" src="../assets/scrollalbum.png" alt="ScrollAlbum" loading="lazy" />
         <div>
           <h2>ScrollAlbum</h2>
           <span class="badge live">App Store</span>
@@ -316,7 +288,7 @@
     <!-- 好きぴエール / Suki-pi Yell -->
     <article class="card">
       <div class="card-head">
-        <img class="icon" src="assets/sukipiyell.png" alt="好きぴエール" loading="lazy" />
+        <img class="icon" src="../assets/sukipiyell.png" alt="好きぴエール" loading="lazy" />
         <div>
           <h2>好きぴエール</h2>
           <span class="badge live">App Store</span>
@@ -337,7 +309,7 @@
     <!-- POLACAM -->
     <article class="card">
       <div class="card-head">
-        <img class="icon" src="assets/polacam.png" alt="POLACAM" loading="lazy" />
+        <img class="icon" src="../assets/polacam.png" alt="POLACAM" loading="lazy" />
         <div>
           <h2>POLACAM</h2>
           <span class="badge live">App Store</span>
@@ -358,7 +330,7 @@
     <!-- LoveTypeViewer -->
     <article class="card">
       <div class="card-head">
-        <img class="icon" src="assets/lovetypeviewer.png" alt="LoveTypeViewer" loading="lazy" />
+        <img class="icon" src="../assets/lovetypeviewer.png" alt="LoveTypeViewer" loading="lazy" />
         <div>
           <h2>LoveTypeViewer</h2>
           <span class="badge live">App Store</span>
@@ -379,7 +351,7 @@
     <!-- Magic Album -->
     <article class="card">
       <div class="card-head">
-        <img class="icon" src="assets/magicalbum.png" alt="Magic Album" loading="lazy" />
+        <img class="icon" src="../assets/magicalbum.png" alt="Magic Album" loading="lazy" />
         <div>
           <h2>Magic Album</h2>
           <span class="badge soon"><span class="lang-ja">近日公開</span><span class="lang-en">Coming soon</span></span>
@@ -399,7 +371,7 @@
     <!-- instaFolder -->
     <article class="card">
       <div class="card-head">
-        <img class="icon" src="assets/instafolder.png" alt="instaFolder" loading="lazy" />
+        <img class="icon" src="../assets/instafolder.png" alt="instaFolder" loading="lazy" />
         <div>
           <h2>instaFolder</h2>
           <span class="badge live">App Store</span>
@@ -420,7 +392,7 @@
     <!-- Rain Cam -->
     <article class="card">
       <div class="card-head">
-        <img class="icon" src="assets/raincam.png" alt="Rain Cam" loading="lazy" />
+        <img class="icon" src="../assets/raincam.png" alt="Rain Cam" loading="lazy" />
         <div>
           <h2>Rain Cam</h2>
           <span class="badge live">App Store</span>
@@ -441,7 +413,7 @@
     <!-- superMosaic -->
     <article class="card">
       <div class="card-head">
-        <img class="icon" src="assets/supermosaic.png" alt="superMosaic" loading="lazy" />
+        <img class="icon" src="../assets/supermosaic.png" alt="superMosaic" loading="lazy" />
         <div>
           <h2>superMosaic</h2>
           <span class="badge live">App Store</span>
@@ -462,7 +434,7 @@
     <!-- BeatShuffle -->
     <article class="card">
       <div class="card-head">
-        <img class="icon" src="assets/beatshuffle.png" alt="BeatShuffle" loading="lazy" />
+        <img class="icon" src="../assets/beatshuffle.png" alt="BeatShuffle" loading="lazy" />
         <div>
           <h2>BeatShuffle</h2>
           <span class="badge live">App Store</span>
@@ -483,7 +455,7 @@
     <!-- Barcode Pocket -->
     <article class="card">
       <div class="card-head">
-        <img class="icon" src="assets/barcodepocket.png" alt="BarcodeClip" loading="lazy" />
+        <img class="icon" src="../assets/barcodepocket.png" alt="BarcodeClip" loading="lazy" />
         <div>
           <h2>BarcodeClip</h2>
           <span class="badge live">App Store</span>
@@ -504,7 +476,7 @@
     <!-- MahjongEye -->
     <article class="card">
       <div class="card-head">
-        <img class="icon" src="assets/mahjongeye.png" alt="MahjongEye / 麻雀EYE" loading="lazy" />
+        <img class="icon" src="../assets/mahjongeye.png" alt="MahjongEye / 麻雀EYE" loading="lazy" />
         <div>
           <h2>麻雀EYE</h2>
           <span class="badge live">App Store</span>
@@ -525,7 +497,7 @@
     <!-- 30minTimer -->
     <article class="card">
       <div class="card-head">
-        <img class="icon" src="assets/30mintimer.png" alt="30minTimer" loading="lazy" />
+        <img class="icon" src="../assets/30mintimer.png" alt="30minTimer" loading="lazy" />
         <div>
           <h2>30minTimer</h2>
           <span class="badge live">App Store</span>
@@ -545,135 +517,10 @@
   </main>
 
   <footer>
-    <div class="row">
-      <a class="archive-link" href="archive/">
-        <span class="lang-ja">旧デザイン（アーカイブ）を見る</span>
-        <span class="lang-en">View the classic design (archive)</span>
-      </a>
-      <div>© <span id="year"></span> hideto · Made with ♥ in Japan</div>
-    </div>
+    <div>© <span id="year"></span> hideto · Made with ♥ in Japan</div>
   </footer>
 </div>
 
-<!-- ---- three.js background: quiet drifting particle field ---- -->
-<script type="importmap">
-{ "imports": { "three": "https://unpkg.com/three@0.160.0/build/three.module.js" } }
-</script>
-<script type="module">
-  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const canvas = document.getElementById('bg-canvas');
-  const fallback = document.querySelector('.fallback-bg');
-
-  (async () => {
-    let THREE;
-    try { THREE = await import('three'); } catch (e) { return; }
-
-    let renderer;
-    try {
-      renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: false, powerPreference: 'high-performance' });
-    } catch (e) { return; }
-    fallback.style.display = 'none';
-
-    renderer.setClearColor(0x0a0a0c, 1);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
-
-    const size = { w: window.innerWidth, h: window.innerHeight };
-    renderer.setSize(size.w, size.h, false);
-
-    const scene = new THREE.Scene();
-    const cam = new THREE.PerspectiveCamera(60, size.w / size.h, 0.1, 100);
-    cam.position.z = 14;
-
-    // ---- fine, low-opacity particles (monochrome) ----
-    const COUNT = Math.min(360, Math.floor((size.w * size.h) / 5200));
-    const positions = new Float32Array(COUNT * 3);
-    const sizes = new Float32Array(COUNT);
-    const phases = new Float32Array(COUNT);
-    const alphas = new Float32Array(COUNT);
-    for (let i = 0; i < COUNT; i++) {
-      positions[i*3+0] = (Math.random() - 0.5) * 36;
-      positions[i*3+1] = (Math.random() - 0.5) * 24;
-      positions[i*3+2] = (Math.random() - 0.5) * 18 - 2;
-      sizes[i]  = Math.random() * 1.6 + 0.5;
-      phases[i] = Math.random() * Math.PI * 2;
-      alphas[i] = Math.random() * 0.4 + 0.12;
-    }
-    const geo = new THREE.BufferGeometry();
-    geo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-    geo.setAttribute('aSize',  new THREE.BufferAttribute(sizes, 1));
-    geo.setAttribute('aPhase', new THREE.BufferAttribute(phases, 1));
-    geo.setAttribute('aAlpha', new THREE.BufferAttribute(alphas, 1));
-
-    const uniforms = {
-      uTime: { value: 0 },
-      uPix:  { value: renderer.getPixelRatio() },
-    };
-    const mat = new THREE.ShaderMaterial({
-      uniforms,
-      transparent: true, depthWrite: false, blending: THREE.NormalBlending,
-      vertexShader: `
-        uniform float uTime; uniform float uPix;
-        attribute float aSize; attribute float aPhase; attribute float aAlpha;
-        varying float vAlpha;
-        void main(){
-          vAlpha = aAlpha;
-          vec3 pos = position;
-          pos.y += sin(uTime * 0.12 + aPhase) * 0.45;
-          pos.x += cos(uTime * 0.09 + aPhase) * 0.45;
-          vec4 mv = modelViewMatrix * vec4(pos, 1.0);
-          gl_Position = projectionMatrix * mv;
-          gl_PointSize = aSize * uPix * (110.0 / -mv.z);
-        }
-      `,
-      fragmentShader: `
-        varying float vAlpha;
-        void main(){
-          vec2 c = gl_PointCoord - 0.5;
-          float d = length(c);
-          float a = smoothstep(0.5, 0.0, d);
-          gl_FragColor = vec4(vec3(0.92, 0.93, 0.98), a * vAlpha);
-        }
-      `,
-    });
-    const points = new THREE.Points(geo, mat);
-    scene.add(points);
-
-    // ---- gentle mouse parallax ----
-    const target = new THREE.Vector2(0, 0);
-    const eased = new THREE.Vector2(0, 0);
-    window.addEventListener('pointermove', (e) => {
-      target.x = (e.clientX / window.innerWidth) * 2 - 1;
-      target.y = -((e.clientY / window.innerHeight) * 2 - 1);
-    }, { passive: true });
-
-    function resize(){
-      size.w = window.innerWidth; size.h = window.innerHeight;
-      renderer.setSize(size.w, size.h, false);
-      cam.aspect = size.w / size.h; cam.updateProjectionMatrix();
-    }
-    window.addEventListener('resize', resize);
-
-    const clock = new THREE.Clock();
-    let t = 0;
-    function frame(){
-      const dt = clock.getDelta();
-      t += reduce ? dt * 0.2 : dt;
-      eased.lerp(target, 0.035);
-      uniforms.uTime.value = t;
-
-      cam.position.x += (eased.x * 1.4 - cam.position.x) * 0.04;
-      cam.position.y += (eased.y * 0.9 - cam.position.y) * 0.04;
-      cam.lookAt(0, 0, 0);
-      points.rotation.z = t * 0.004;
-
-      renderer.render(scene, cam);
-      requestAnimationFrame(frame);
-    }
-    frame();
-  })();
-</script>
-
-<!-- ---- UI logic: language toggle ---- -->
 <script>
   (function(){
     var html = document.documentElement;
@@ -692,77 +539,6 @@
     });
     apply(lang);
     document.getElementById('year').textContent = new Date().getFullYear();
-
-    // ---- Dynamic scroll-driven 3D for the cards ----
-    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    var fine = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
-    var cards = Array.prototype.slice.call(document.querySelectorAll('.card'));
-
-    // per-card animation state
-    var st = cards.map(function(){ return { rev:0, target:0, hov:0, hx:0, hy:0 }; });
-
-    // reveal target driven by viewport intersection (re-plays on re-enter)
-    if('IntersectionObserver' in window){
-      var io = new IntersectionObserver(function(entries){
-        entries.forEach(function(en){
-          var i = cards.indexOf(en.target);
-          if(i>=0) st[i].target = en.isIntersecting ? 1 : 0;
-        });
-      }, { threshold:0, rootMargin:'-8% 0px -8% 0px' });
-      cards.forEach(function(c){ io.observe(c); });
-    } else {
-      st.forEach(function(s){ s.target = 1; });
-    }
-
-    // pointer-follow tilt on top of the scroll motion (fine pointers only)
-    if(fine && !reduce){
-      cards.forEach(function(c,i){
-        c.addEventListener('pointermove', function(e){
-          var r = c.getBoundingClientRect();
-          st[i].hx = (e.clientX - r.left) / r.width  - 0.5;
-          st[i].hy = (e.clientY - r.top)  / r.height - 0.5;
-          st[i].hov = 1;
-        });
-        c.addEventListener('pointerleave', function(){ st[i].hov = 0; });
-      });
-    }
-
-    var vh = window.innerHeight;
-    window.addEventListener('resize', function(){ vh = window.innerHeight; }, { passive:true });
-
-    function loop(){
-      var mid = vh * 0.5;
-      for(var i=0; i<cards.length; i++){
-        var s = st[i], c = cards[i];
-        s.rev += (s.target - s.rev) * 0.10;      // eased reveal 0..1
-
-        var r = c.getBoundingClientRect();
-        var d = (r.top + r.height/2 - mid) / vh;  // -~0.5 (top) .. +~0.5 (bottom)
-        if(d < -1) d = -1; else if(d > 1) d = 1;
-
-        var rev = s.rev;
-        var op  = 0.12 + 0.88 * rev;
-        // reveal: rise up + swing from below
-        var ty  = (1 - rev) * 48;
-        var tzR = (1 - rev) * -140;
-        var rxR = (1 - rev) * -18;
-        // continuous scroll parallax/tilt
-        var rxS = reduce ? 0 : -d * 7;
-        var tzS = reduce ? 0 : -Math.abs(d) * 22;
-        // hover follow
-        var rxH = (fine && !reduce && s.hov) ? -s.hy * 5 : 0;
-        var ryH = (fine && !reduce && s.hov) ?  s.hx * 6 : 0;
-        var lift = s.hov ? 6 : 0;
-
-        c.style.setProperty('--op', op.toFixed(3));
-        c.style.setProperty('--ty', (ty - lift).toFixed(1) + 'px');
-        c.style.setProperty('--tz', (tzR + tzS + (s.hov?24:0)).toFixed(1) + 'px');
-        c.style.setProperty('--rx', (rxR + rxS + rxH).toFixed(2) + 'deg');
-        c.style.setProperty('--ry', (ryH).toFixed(2) + 'deg');
-      }
-      requestAnimationFrame(loop);
-    }
-    loop();
   })();
 </script>
 </body>

@@ -15,6 +15,7 @@ Listed in card order.
 
 | App | Page (GitHub Pages) | App Store |
 |-----|---------------------|-----------|
+| SHIBA TOWER   | https://hideto0926.github.io/shibaTower/     | — (coming soon) |
 | ふぅふぅ       | https://hideto0926.github.io/fufu/           | — (coming soon) |
 | ScrollAlbum   | https://hideto0926.github.io/scrollAlbum/    | https://apps.apple.com/jp/app/scrollalbum/id6793163045 |
 | 好きぴエール   | https://hideto0926.github.io/cheerNotice/    | https://apps.apple.com/jp/app/%E5%A5%BD%E3%81%8D%E3%81%B4%E3%82%A8%E3%83%BC%E3%83%AB/id6791305109 |
