@@ -15,6 +15,7 @@ Listed in card order.
 
 | App | Page (GitHub Pages) | App Store |
 |-----|---------------------|-----------|
+| 花火 SOUND DELAY | https://hideto0926.github.io/hanabi/          | — (coming soon) |
 | かみバトル     | https://hideto0926.github.io/kamiBattle/     | https://apps.apple.com/jp/app/kamibattle/id6801514915 |
 | SHIBA TOWER   | https://hideto0926.github.io/shibaTower/     | https://apps.apple.com/jp/app/shiba-tower/id6800798024 |
 | ふぅふぅ       | https://hideto0926.github.io/fufu/           | https://apps.apple.com/jp/app/%E3%81%B5%E3%81%85%E3%81%B5%E3%81%85-%E6%81%AF%E3%81%A7%E3%81%86%E3%81%8B%E3%81%9B%E3%82%8B%E9%A2%A8%E8%88%B9%E3%82%B2%E3%83%BC%E3%83%A0/id6797118306 |
