@@ -4,8 +4,8 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>hideto — Apps / アプリ一覧</title>
-<meta name="description" content="Apps by hideto. Indie iOS apps — 花火 SOUND DELAY, かみバトル / KAMIBATTLE, SHIBA TOWER, ふぅふぅ, ScrollAlbum, 好きぴエール, LoveTypeViewer, Magic Album, instaFolder, Rain Cam, superMosaic, BeatShuffle, BarcodeClip, MahjongEye / 麻雀EYE, 30minTimer. hideto が作る iOS アプリの一覧ページ。" />
-<meta name="keywords" content="hideto, iOS apps, indie app, 花火 SOUND DELAY, hanabi, 花火, 花火動画, 音ずれ補正, 音の遅れ, かみバトル, KAMIBATTLE, SHIBA TOWER, 柴犬, ふぅふぅ, fufu, 息で遊ぶ, 風船ゲーム, ScrollAlbum, スクロールアルバム, 旅アルバム, 好きぴエール, cheerNotice, 応援通知, LoveTypeViewer, LoveType, 相性診断, Magic Album, instaFolder, 麻雀EYE, MahjongEye, superMosaic, BeatShuffle, BarcodeClip, 30minTimer, Rain Cam, アプリ, オンデバイスAI" />
+<meta name="description" content="Apps by hideto. Indie iOS apps — 音の神経衰弱 / Sound Memory, ドンピタ｜花火の音ズレ補正, かみバトル / KAMIBATTLE, SHIBA TOWER, ふぅふぅ, ScrollAlbum, 好きぴエール, LoveTypeViewer, Magic Album, instaFolder, Rain Cam, superMosaic, BeatShuffle, BarcodeClip, MahjongEye / 麻雀EYE, 30minTimer. hideto が作る iOS アプリの一覧ページ。" />
+<meta name="keywords" content="hideto, iOS apps, indie app, 音の神経衰弱, Sound Memory, 神経衰弱, 音楽ゲーム, イントロクイズ, Apple Music, ドンピタ, 花火の音ズレ補正, hanabi, 花火, 花火動画, 音ズレ補正, 音の遅れ, かみバトル, KAMIBATTLE, SHIBA TOWER, 柴犬, ふぅふぅ, fufu, 息で遊ぶ, 風船ゲーム, ScrollAlbum, スクロールアルバム, 旅アルバム, 好きぴエール, cheerNotice, 応援通知, LoveTypeViewer, LoveType, 相性診断, Magic Album, instaFolder, 麻雀EYE, MahjongEye, superMosaic, BeatShuffle, BarcodeClip, 30minTimer, Rain Cam, アプリ, オンデバイスAI" />
 <meta name="author" content="hideto" />
 <meta name="robots" content="index, follow" />
 <meta name="theme-color" content="#0a0a0c" />
@@ -38,7 +38,8 @@
   "url": "https://hideto0926.github.io/hpTop/",
   "author": { "@type": "Person", "name": "hideto" },
   "hasPart": [
-    { "@type": "SoftwareApplication", "name": "花火 SOUND DELAY", "operatingSystem": "iOS", "applicationCategory": "MultimediaApplication", "url": "https://hideto0926.github.io/hanabi/" },
+    { "@type": "SoftwareApplication", "name": "音の神経衰弱", "operatingSystem": "iOS", "applicationCategory": "GameApplication", "url": "https://hideto0926.github.io/musicGame/" },
+    { "@type": "SoftwareApplication", "name": "ドンピタ｜花火の音ズレ補正", "operatingSystem": "iOS", "applicationCategory": "PhotoApplication", "url": "https://apps.apple.com/jp/app/%E3%83%89%E3%83%B3%E3%83%94%E3%82%BF-%E8%8A%B1%E7%81%AB%E3%81%AE%E9%9F%B3%E3%82%BA%E3%83%AC%E8%A3%9C%E6%AD%A3/id6804727858" },
     { "@type": "SoftwareApplication", "name": "かみバトル", "operatingSystem": "iOS", "applicationCategory": "GameApplication", "url": "https://apps.apple.com/jp/app/kamibattle/id6801514915" },
     { "@type": "SoftwareApplication", "name": "SHIBA TOWER", "operatingSystem": "iOS", "applicationCategory": "GameApplication", "url": "https://apps.apple.com/jp/app/shiba-tower/id6800798024" },
     { "@type": "SoftwareApplication", "name": "ふぅふぅ", "operatingSystem": "iOS", "applicationCategory": "GameApplication", "url": "https://apps.apple.com/jp/app/%E3%81%B5%E3%81%85%E3%81%B5%E3%81%85-%E6%81%AF%E3%81%A7%E3%81%86%E3%81%8B%E3%81%9B%E3%82%8B%E9%A2%A8%E8%88%B9%E3%82%B2%E3%83%BC%E3%83%A0/id6797118306" },
@@ -63,8 +64,8 @@
 <style>
   :root{
     --bg:#0a0a0c;
-    --panel:rgba(255,255,255,.024);
-    --panel-hover:rgba(255,255,255,.045);
+    --panel:rgba(14,14,18,.66);        /* opaque enough to keep text legible over the flying icons */
+    --panel-hover:rgba(22,22,28,.76);
     --line:rgba(255,255,255,.09);
     --line-strong:rgba(255,255,255,.20);
     --text:#eceef3;
@@ -136,6 +137,22 @@
     font-weight:600; letter-spacing:-.02em; color:var(--text);
   }
   .hero p{color:var(--muted); font-size:clamp(15px,2vw,18px); margin:0; max-width:560px;}
+
+  /* ---- Release news ---- */
+  .news{
+    display:inline-flex; align-items:center; gap:12px; margin-top:30px;
+    padding:8px 16px 8px 8px; border:1px solid var(--line-strong); border-radius:14px;
+    background:rgba(14,14,18,.66); color:var(--text); text-decoration:none;
+    font-size:13.5px; line-height:1.45; transition:border-color .2s, background .2s;
+  }
+  .news:hover{border-color:rgba(255,255,255,.34); background:rgba(24,24,30,.78);}
+  .news img{width:30px; height:30px; border-radius:8px; flex:0 0 auto;}
+  .news .new{
+    flex:0 0 auto; font-size:10.5px; font-weight:700; letter-spacing:.14em;
+    color:#0a0a0c; background:#7bd39b; padding:3px 8px; border-radius:999px;
+  }
+  .news .arrow{color:var(--muted); transition:transform .2s;}
+  .news:hover .arrow{transform:translateX(3px); color:var(--text);}
 
   /* ---- Section label ---- */
   .section-label{
@@ -247,31 +264,61 @@
       <span class="lang-ja">オンデバイスにこだわった、ちいさくて便利な iOS アプリたち。気になるアプリのページへどうぞ。</span>
       <span class="lang-en">A collection of small, useful, on-device iOS apps. Tap through to any app’s page.</span>
     </p>
+    <a class="news" href="https://apps.apple.com/jp/app/%E3%83%89%E3%83%B3%E3%83%94%E3%82%BF-%E8%8A%B1%E7%81%AB%E3%81%AE%E9%9F%B3%E3%82%BA%E3%83%AC%E8%A3%9C%E6%AD%A3/id6804727858">
+      <span class="new">NEW</span>
+      <img src="assets/dompita.png" alt="" />
+      <span>
+        <span class="lang-ja">「ドンピタ｜花火の音ズレ補正」が App Store でリリースされました</span>
+        <span class="lang-en">“ドンピタ (Donpita) — Fireworks Sound Sync” is out now on the App Store</span>
+      </span>
+      <span class="arrow" aria-hidden="true">→</span>
+    </a>
   </header>
 
   <div class="section-label">
     <span class="lang-ja">アプリ一覧</span><span class="lang-en">All apps</span>
-    <span class="count">16</span>
+    <span class="count">17</span>
   </div>
 
   <main class="grid" id="grid">
-    <!-- 花火 SOUND DELAY -->
+    <!-- 音の神経衰弱 / Sound Memory -->
     <article class="card">
       <div class="card-head">
-        <img class="icon" src="assets/hanabi.png" alt="花火 SOUND DELAY" loading="lazy" />
+        <img class="icon" src="assets/musicgame.png" alt="音の神経衰弱" loading="lazy" />
         <div>
-          <h2>花火 SOUND DELAY</h2>
+          <h2>音の神経衰弱</h2>
           <span class="badge soon"><span class="lang-ja">近日公開</span><span class="lang-en">Coming soon</span></span>
         </div>
       </div>
       <p class="tag">
-        <span class="lang-ja">離れて撮った花火の動画は、光より音が遅れて届く。距離を決めるだけで、そのぶん音を前に出して再生。音の波を見ながら合わせて、直したまま1本に書き出せる。すべて端末内で処理。</span>
-        <span class="lang-en">Fireworks filmed from afar arrive as light first, sound later. Just set the distance and the audio slides forward — match it against the live waveform, then export the corrected video. 100% on-device.</span>
+        <span class="lang-ja">みんなでiPhoneを囲む、音だけの神経衰弱。カードをめくると曲が数秒だけ流れ、手がかりは音だけ。Apple Musicのカタログ全体からランダムに出題されるので、誰のライブラリにも有利不利なし。最大12人。</span>
+        <span class="lang-en">Memory, played by ear. Flip a card and a song plays for just a few seconds — sound is your only clue. Tracks come at random from the whole Apple Music catalog, so nobody’s library gives them an edge. Up to 12 players around one iPhone.</span>
+      </p>
+      <div class="actions">
+        <a class="btn btn-primary" href="https://hideto0926.github.io/musicGame/">
+          <span class="lang-ja">ページを見る</span><span class="lang-en">View page</span>
+        </a>
+      </div>
+    </article>
+
+    <!-- ドンピタ｜花火の音ズレ補正 (formerly 花火 SOUND DELAY) -->
+    <article class="card">
+      <div class="card-head">
+        <img class="icon" src="assets/dompita.png" alt="ドンピタ｜花火の音ズレ補正" loading="lazy" />
+        <div>
+          <h2>ドンピタ｜花火の音ズレ補正</h2>
+          <span class="badge live">App Store</span>
+        </div>
+      </div>
+      <p class="tag">
+        <span class="lang-ja">あの“ドン”が、映像とピタッと重なる。離れて撮った花火動画の音ズレを、距離バーを動かすだけで補正。音の波を見ながら合わせて、そのまま写真アプリへ書き出し。すべて端末内で処理。</span>
+        <span class="lang-en">Make the “boom” land right on the burst. Fireworks filmed from afar sound late — slide the distance bar to pull the audio back in sync, check it on the waveform, and export straight to Photos. 100% on-device.</span>
       </p>
       <div class="actions">
         <a class="btn btn-primary" href="https://hideto0926.github.io/hanabi/">
           <span class="lang-ja">ページを見る</span><span class="lang-en">View page</span>
         </a>
+        <a class="btn btn-ghost" href="https://apps.apple.com/jp/app/%E3%83%89%E3%83%B3%E3%83%94%E3%82%BF-%E8%8A%B1%E7%81%AB%E3%81%AE%E9%9F%B3%E3%82%BA%E3%83%AC%E8%A3%9C%E6%AD%A3/id6804727858">App Store</a>
       </div>
     </article>
 
@@ -607,7 +654,7 @@
   </footer>
 </div>
 
-<!-- ---- three.js background: quiet drifting particle field ---- -->
+<!-- ---- three.js background: app icons flying out toward the viewer over a quiet particle field ---- -->
 <script type="importmap">
 { "imports": { "three": "https://unpkg.com/three@0.160.0/build/three.module.js" } }
 </script>
@@ -633,7 +680,7 @@
     renderer.setSize(size.w, size.h, false);
 
     const scene = new THREE.Scene();
-    const cam = new THREE.PerspectiveCamera(60, size.w / size.h, 0.1, 100);
+    const cam = new THREE.PerspectiveCamera(60, size.w / size.h, 0.1, 140);
     cam.position.z = 14;
 
     // ---- fine, low-opacity particles (monochrome) ----
@@ -690,6 +737,77 @@
     const points = new THREE.Points(geo, mat);
     scene.add(points);
 
+    // ---- app icons flying out of the depth toward the viewer ----
+    // Icons are read from the cards, so a newly added card joins the swarm automatically.
+    const FAR = -70, NEAR = 11, ICON_PX = 256, ICON_ALPHA = 0.72;
+    const ICON_COUNT = size.w < 640 ? 14 : 26;
+    const textures = [];
+    const iconGeo = new THREE.PlaneGeometry(1, 1);
+    const icons = [];
+    for (let i = 0; i < ICON_COUNT; i++) {
+      const m = new THREE.Mesh(iconGeo, new THREE.MeshBasicMaterial({ transparent: true, depthWrite: false, opacity: 0 }));
+      m.visible = false;
+      scene.add(m);
+      icons.push(m);
+    }
+
+    function spawn(m, anywhere){
+      const u = m.userData;
+      m.material.map = textures[(Math.random() * textures.length) | 0];
+      m.material.needsUpdate = true;
+      // start off-axis so icons swell outward past the edges rather than straight through the text
+      const ang = Math.random() * Math.PI * 2;
+      const rad = 2.5 + Math.random() * 7;
+      m.position.set(
+        Math.cos(ang) * rad * 1.4,
+        Math.sin(ang) * rad,
+        anywhere ? FAR + Math.random() * (NEAR - FAR) : FAR - Math.random() * 12
+      );
+      m.rotation.set((Math.random() - 0.5) * 0.9, (Math.random() - 0.5) * 0.9, (Math.random() - 0.5) * 0.6);
+      u.spin = [(Math.random() - 0.5) * 0.5, (Math.random() - 0.5) * 0.5, (Math.random() - 0.5) * 0.35];
+      u.speed = 5 + Math.random() * 6;
+      const s = 1.4 + Math.random() * 1.2;
+      m.scale.set(s, s, 1);
+      m.material.opacity = 0;
+      m.visible = true;
+    }
+
+    // rounded iOS-style icon texture; null if the image taints the canvas (e.g. opened via file://)
+    function iconTexture(img){
+      const c = document.createElement('canvas');
+      c.width = c.height = ICON_PX;
+      const g = c.getContext('2d');
+      g.beginPath();
+      if (g.roundRect) g.roundRect(0, 0, ICON_PX, ICON_PX, ICON_PX * 0.225); else g.rect(0, 0, ICON_PX, ICON_PX);
+      g.clip();
+      g.drawImage(img, 0, 0, ICON_PX, ICON_PX);
+      g.lineWidth = 4; g.strokeStyle = 'rgba(255,255,255,.16)'; g.stroke();
+      try { g.getImageData(0, 0, 1, 1); } catch (e) { return null; }
+      const tex = new THREE.CanvasTexture(c);
+      tex.colorSpace = THREE.SRGBColorSpace;
+      tex.anisotropy = Math.min(4, renderer.capabilities.getMaxAnisotropy());
+      return tex;
+    }
+
+    const iconSrcs = new Set(Array.from(document.querySelectorAll('.card .icon'), (el) => el.getAttribute('src')));
+    Promise.all(Array.from(iconSrcs, (src) => new Promise((resolve) => {
+      const img = new Image();
+      img.onload = () => resolve(iconTexture(img));
+      img.onerror = () => resolve(null);
+      img.src = src;
+    }))).then((list) => {
+      list.forEach((tex) => { if (tex) textures.push(tex); });
+      if (textures.length) icons.forEach((m) => spawn(m, true));
+    });
+
+    // scrolling gives the swarm a short burst of speed
+    let boost = 0, reveal = 0, lastY = window.scrollY;
+    window.addEventListener('scroll', () => {
+      const y = window.scrollY;
+      if (!reduce) boost = Math.min(boost + Math.abs(y - lastY) * 0.01, 4);
+      lastY = y;
+    }, { passive: true });
+
     // ---- gentle mouse parallax ----
     const target = new THREE.Vector2(0, 0);
     const eased = new THREE.Vector2(0, 0);
@@ -717,6 +835,23 @@
       cam.position.y += (eased.y * 0.9 - cam.position.y) * 0.04;
       cam.lookAt(0, 0, 0);
       points.rotation.z = t * 0.004;
+
+      const step = Math.min(dt, 0.05) * (reduce ? 0.15 : 1);
+      boost -= boost * Math.min(1, dt * 3);
+      if (textures.length) reveal = Math.min(1, reveal + Math.min(dt, 0.05) * 0.8);
+      for (const m of icons) {
+        if (!m.visible) continue;
+        const u = m.userData;
+        m.position.z += u.speed * (1 + boost) * step;
+        if (m.position.z > NEAR) { spawn(m, false); continue; }
+        m.rotation.x += u.spin[0] * step;
+        m.rotation.y += u.spin[1] * step;
+        m.rotation.z += u.spin[2] * step;
+        const z = m.position.z;
+        m.material.opacity = ICON_ALPHA * reveal
+          * THREE.MathUtils.smoothstep(z, FAR, FAR + 24)       // fade in from the depth
+          * (1 - THREE.MathUtils.smoothstep(z, 4, NEAR));      // fade out as it passes the camera
+      }
 
       renderer.render(scene, cam);
       requestAnimationFrame(frame);
