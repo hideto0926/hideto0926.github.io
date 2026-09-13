@@ -15,6 +15,7 @@ Listed in card order.
 
 | App | Page (GitHub Pages) | App Store |
 |-----|---------------------|-----------|
+| Mercury       | https://hideto0926.github.io/mercuryGame/    | — (coming soon) |
 | 音の神経衰弱   | https://hideto0926.github.io/musicGame/      | — (coming soon) |
 | ドンピタ｜花火の音ズレ補正 | https://hideto0926.github.io/hanabi/ | https://apps.apple.com/jp/app/%E3%83%89%E3%83%B3%E3%83%94%E3%82%BF-%E8%8A%B1%E7%81%AB%E3%81%AE%E9%9F%B3%E3%82%BA%E3%83%AC%E8%A3%9C%E6%AD%A3/id6804727858 |
 | かみバトル     | https://hideto0926.github.io/kamiBattle/     | https://apps.apple.com/jp/app/kamibattle/id6801514915 |
