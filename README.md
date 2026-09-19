@@ -15,7 +15,9 @@ Listed in card order.
 
 | App | Page (GitHub Pages) | App Store |
 |-----|---------------------|-----------|
-| Mercury       | https://hideto0926.github.io/mercuryGame/    | — (coming soon) |
+| NullFace      | https://hideto0926.github.io/nullFace/       | — (coming soon) |
+| あとから旅日記 | https://hideto0926.github.io/atokaraDiary/   | — (coming soon) |
+| Mercury       | https://hideto0926.github.io/mercuryGame/    | https://apps.apple.com/jp/app/mercury-%E5%82%BE%E3%81%91%E3%81%A6%E9%81%8B%E3%81%B6%E6%B0%B4%E9%8A%80%E8%BF%B7%E8%B7%AF/id6800380855 |
 | 音の神経衰弱   | https://hideto0926.github.io/musicGame/      | — (coming soon) |
 | ドンピタ｜花火の音ズレ補正 | https://hideto0926.github.io/hanabi/ | https://apps.apple.com/jp/app/%E3%83%89%E3%83%B3%E3%83%94%E3%82%BF-%E8%8A%B1%E7%81%AB%E3%81%AE%E9%9F%B3%E3%82%BA%E3%83%AC%E8%A3%9C%E6%AD%A3/id6804727858 |
 | かみバトル     | https://hideto0926.github.io/kamiBattle/     | https://apps.apple.com/jp/app/kamibattle/id6801514915 |
