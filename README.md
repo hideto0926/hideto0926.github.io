@@ -15,6 +15,7 @@ Listed in card order.
 
 | App | Page (GitHub Pages) | App Store |
 |-----|---------------------|-----------|
+| parePics      | https://hideto0926.github.io/parePics/       | — (coming soon) |
 | NullFace      | https://hideto0926.github.io/nullFace/       | — (coming soon) |
 | あとから旅日記 | https://hideto0926.github.io/atokaraDiary/   | — (coming soon) |
 | Mercury       | https://hideto0926.github.io/mercuryGame/    | https://apps.apple.com/jp/app/mercury-%E5%82%BE%E3%81%91%E3%81%A6%E9%81%8B%E3%81%B6%E6%B0%B4%E9%8A%80%E8%BF%B7%E8%B7%AF/id6800380855 |
