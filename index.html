@@ -182,7 +182,7 @@
   .card{
     position:relative; display:flex; flex-direction:column; gap:16px;
     background:var(--panel); border:1px solid var(--line); border-radius:var(--radius);
-    padding:24px; transform-style:preserve-3d; will-change:transform, opacity;
+    padding:24px; transform-style:preserve-3d;
     opacity:var(--op,1);
     transform:
       translateY(var(--ty,0px))
@@ -1003,18 +1003,8 @@
     // per-card animation state
     var st = cards.map(function(){ return { rev:0, target:0, hov:0, hx:0, hy:0 }; });
 
-    // reveal target driven by viewport intersection (re-plays on re-enter)
-    if('IntersectionObserver' in window){
-      var io = new IntersectionObserver(function(entries){
-        entries.forEach(function(en){
-          var i = cards.indexOf(en.target);
-          if(i>=0) st[i].target = en.isIntersecting ? 1 : 0;
-        });
-      }, { threshold:0, rootMargin:'-8% 0px -8% 0px' });
-      cards.forEach(function(c){ io.observe(c); });
-    } else {
-      st.forEach(function(s){ s.target = 1; });
-    }
+    // 画面に入っているかは下の loop() で毎フレーム見る（IntersectionObserver が働かない環境でも
+    // カードが薄いまま残らないように）
 
     // pointer-follow tilt on top of the scroll motion (fine pointers only)
     if(fine && !reduce){
@@ -1029,8 +1019,22 @@
       });
     }
 
+    // 画面に入っているかは、3D の変形を受けない「並んでいる位置」で見る。
+    // 変形後の位置（getBoundingClientRect）で見ると、薄いカードほど奥に下がって判定から外れ、
+    // 薄いまま戻らなくなる（下の方のカードが薄く見える原因）
     var vh = window.innerHeight;
-    window.addEventListener('resize', function(){ vh = window.innerHeight; }, { passive:true });
+    var tops = [], hs = [];
+    function measure(){
+      vh = window.innerHeight;
+      for(var i=0;i<cards.length;i++){
+        var el = cards[i], y = 0;
+        while(el){ y += el.offsetTop; el = el.offsetParent; }
+        tops[i] = y; hs[i] = cards[i].offsetHeight;
+      }
+    }
+    measure();
+    window.addEventListener('resize', measure, { passive:true });
+    window.addEventListener('load', measure);
 
     function loop(){
       var mid = vh * 0.5;
@@ -1038,8 +1042,10 @@
         var s = st[i], c = cards[i];
         s.rev += (s.target - s.rev) * 0.10;      // eased reveal 0..1
 
-        var r = c.getBoundingClientRect();
-        var d = (r.top + r.height/2 - mid) / vh;  // -~0.5 (top) .. +~0.5 (bottom)
+        var top = tops[i] - window.scrollY;      // 画面の上からの位置（変形前）
+        // 画面に入っていれば濃く、外なら薄く（上下 8% は外扱い）
+        s.target = (top + hs[i] > vh * 0.08 && top < vh * 0.92) ? 1 : 0;
+        var d = (top + hs[i]/2 - mid) / vh;  // -~0.5 (top) .. +~0.5 (bottom)
         if(d < -1) d = -1; else if(d > 1) d = 1;
 
         var rev = s.rev;
