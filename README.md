@@ -15,6 +15,7 @@ Listed in card order.
 
 | App | Page (GitHub Pages) | App Store |
 |-----|---------------------|-----------|
+| GeoInfoView   | https://hideto0926.github.io/GeoInfoView/    | — (coming soon) |
 | pairPics      | https://hideto0926.github.io/pairPics/       | — (coming soon) |
 | NullFace      | https://hideto0926.github.io/nullFace/       | — (coming soon) |
 | あとから旅日記 | https://hideto0926.github.io/atokaraDiary/   | — (coming soon) |
