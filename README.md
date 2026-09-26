@@ -16,9 +16,9 @@ Listed in card order.
 | App | Page (GitHub Pages) | App Store |
 |-----|---------------------|-----------|
 | GeoInfoView   | https://hideto0926.github.io/GeoInfoView/    | — (coming soon) |
-| pairPics      | https://hideto0926.github.io/pairPics/       | — (coming soon) |
+| pairPics      | https://hideto0926.github.io/parePics/       | https://apps.apple.com/jp/app/pairpics/id6814495545 |
 | NullFace      | https://hideto0926.github.io/nullFace/       | — (coming soon) |
-| あとから旅日記 | https://hideto0926.github.io/atokaraDiary/   | — (coming soon) |
+| あとから旅日記 | https://hideto0926.github.io/atokaraDiary/   | https://apps.apple.com/jp/app/%E3%81%82%E3%81%A8%E3%81%8B%E3%82%89%E6%97%85%E6%97%A5%E8%A8%98/id6813947299 |
 | Mercury       | https://hideto0926.github.io/mercuryGame/    | https://apps.apple.com/jp/app/mercury-%E5%82%BE%E3%81%91%E3%81%A6%E9%81%8B%E3%81%B6%E6%B0%B4%E9%8A%80%E8%BF%B7%E8%B7%AF/id6800380855 |
 | 音の神経衰弱   | https://hideto0926.github.io/musicGame/      | — (coming soon) |
 | ドンピタ｜花火の音ズレ補正 | https://hideto0926.github.io/hanabi/ | https://apps.apple.com/jp/app/%E3%83%89%E3%83%B3%E3%83%94%E3%82%BF-%E8%8A%B1%E7%81%AB%E3%81%AE%E9%9F%B3%E3%82%BA%E3%83%AC%E8%A3%9C%E6%AD%A3/id6804727858 |
@@ -37,6 +37,7 @@ Listed in card order.
 | BarcodeClip   | https://hideto0926.github.io/barcodeClip/    | https://apps.apple.com/jp/app/barcodeclip/id6782431475 |
 | 麻雀EYE        | https://hideto0926.github.io/MahjongEye/     | https://apps.apple.com/jp/app/%E9%BA%BB%E9%9B%80eye/id6784469742 |
 | 30minTimer    | https://hideto0926.github.io/30minTimer/     | https://apps.apple.com/jp/app/30mintimer/id6780185941 |
+| これアウト？ (web) | https://hideto0926.github.io/hp_isThisOut/ | — (browser, no install) |
 
 Source pages live in each app's own repo.
 
