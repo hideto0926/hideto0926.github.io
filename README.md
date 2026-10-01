@@ -16,7 +16,7 @@ Listed in card order.
 | App | Page (GitHub Pages) | App Store |
 |-----|---------------------|-----------|
 | Darkroom Lab  | https://hideto0926.github.io/genzo/          | — (coming soon) |
-| KOZU 構図カメラ | https://hideto0926.github.io/composeCam/ | — (coming soon) |
+| KOZU 構図カメラ | https://hideto0926.github.io/compose/ | — (coming soon) |
 | 夜話 / Night Tales | https://hideto0926.github.io/kaidan/ | — (coming soon) |
 | GeoInfoView   | https://hideto0926.github.io/GeoInfoView/    | — (coming soon) |
 | pairPics      | https://hideto0926.github.io/parePics/       | https://apps.apple.com/jp/app/pairpics/id6814495545 |
