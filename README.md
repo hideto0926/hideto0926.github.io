@@ -15,6 +15,9 @@ Listed in card order.
 
 | App | Page (GitHub Pages) | App Store |
 |-----|---------------------|-----------|
+| Darkroom Lab  | https://hideto0926.github.io/genzo/          | — (coming soon) |
+| KOZU 構図カメラ | https://hideto0926.github.io/composeCam/ | — (coming soon) |
+| 夜話 / Night Tales | https://hideto0926.github.io/kaidan/ | — (coming soon) |
 | GeoInfoView   | https://hideto0926.github.io/GeoInfoView/    | — (coming soon) |
 | pairPics      | https://hideto0926.github.io/parePics/       | https://apps.apple.com/jp/app/pairpics/id6814495545 |
 | NullFace      | https://hideto0926.github.io/nullFace/       | — (coming soon) |
@@ -38,6 +41,7 @@ Listed in card order.
 | 麻雀EYE        | https://hideto0926.github.io/MahjongEye/     | https://apps.apple.com/jp/app/%E9%BA%BB%E9%9B%80eye/id6784469742 |
 | 30minTimer    | https://hideto0926.github.io/30minTimer/     | https://apps.apple.com/jp/app/30mintimer/id6780185941 |
 | これアウト？ (web) | https://hideto0926.github.io/hp_isThisOut/ | — (browser, no install) |
+| ホントかウソか JUDGE! (web) | https://hideto0926.github.io/hp_trueFalse/ | — (browser, no install) |
 
 Source pages live in each app's own repo.
 
@@ -56,3 +60,7 @@ Source pages live in each app's own repo.
   so a new card's icon shows up there automatically.
 - Language defaults to the visitor's browser language and can be toggled top-right;
   the choice is remembered via `localStorage`.
+- Color theme: one of 7 themes (`mist`, `sage`, `slate` light; `midnight`, `forest`,
+  `plum`, `cocoa` dark) is picked at random on each visit — never the same twice in a row.
+  The round button top-right re-rolls it. Themes are CSS variables on `html[data-theme]`;
+  the three.js background reads `--bg`, `--accent` and `--teal` from them.
